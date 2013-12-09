@@ -10,11 +10,12 @@ canvas.height = Math.floor(window.innerHeight * .99) - $(".change").height();
 
 var ctx = canvas.getContext("2d");
 if(canvas.width > canvas.height) {
-	len = canvas.height/depth/1.2;
+	len = canvas.height/4;
 }
 else {
-	len = canvas.width/depth/1.2;
+	len = canvas.width/4;
 }
+
 getAngles(depth);
 ctx.strokeStyle = "#333";
 ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -30,7 +31,7 @@ function drawTree(depth, x, y, l, deg){
 		    ctx.moveTo(x, y);
 		    ctx.lineTo(x+dx, y-dy);
 		    ctx.stroke();
-		    drawTree(depth-1, x+dx, y-dy, l*.85	, deg+degrees[i]);
+		    drawTree(depth-1, x+dx, y-dy, l*.5	, deg+degrees[i]);
 		}
     }
 }
@@ -49,12 +50,6 @@ function addToDepth(n) {
 	if(newDepth >=3 && newDepth <=7) {
 		depth = newDepth;
 		console.log("depth changed to: "+depth);
-		if(canvas.width > canvas.height) {
-			len = canvas.height/depth/1.5;
-		}
-		else {
-			len = canvas.width/depth/1.5;
-		}
 	}
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 	drawTree(depth, canvas.width/2, canvas.height/2, len, 0);
